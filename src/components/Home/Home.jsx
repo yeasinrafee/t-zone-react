@@ -10,6 +10,13 @@ const Home = () => {
   const [cart, setCart] = useState([]);
   const handleAddToCart = (tshirt) => {
     console.log(tshirt);
+    const newCart = [...cart, tshirt];
+    setCart(newCart);
+  };
+
+  const handleRemoveFromCart = (id) => {
+    const remaining = cart.filter((ts) => ts._id !== id);
+    setCart(remaining);
   };
 
   return (
@@ -24,7 +31,7 @@ const Home = () => {
         ))}
       </div>
       <div className="cart-container">
-        <Cart />
+        <Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart} />
       </div>
     </div>
   );
